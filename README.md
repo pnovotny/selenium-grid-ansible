@@ -3,9 +3,9 @@ About
 Ansible-based automation for Selenium Grid deployment.
 
 This repository provides two roles:
-- [selenium-hub](roles/selenium-hub/README.md):
+- [selenium-hub](selenium-hub/README.md):
 deployment of a Selenium Hub
-- [selenium-node](roles/selenium-node/README.md):
+- [selenium-node](selenium-node/README.md):
 deployment of Selenium Node(s)
 
 Installation
