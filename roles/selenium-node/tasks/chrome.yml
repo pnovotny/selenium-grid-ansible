@@ -1,0 +1,17 @@
+---
+- name: install the latest Chrome/Chromium browser
+  yum:
+    name: "{{ chrome_package }}"
+    state: latest
+
+- name: install unzip
+  yum:
+    name: unzip
+    state: present
+
+- name: download and unpack chromedriver
+  unarchive:
+    src: "https://chromedriver.storage.googleapis.com/{{ chromedriver_ver }}/chromedriver_linux64.zip"
+    dest: /usr/local/bin
+    remote_src: True
+

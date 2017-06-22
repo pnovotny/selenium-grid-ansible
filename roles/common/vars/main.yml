@@ -1,0 +1,5 @@
+---
+selenium_server_jar: selenium-server-standalone.jar
+selenium_version_short: "{{ selenium_version|regex_replace('^(\\d+\\.\\d+).*$', '\\1') }}"
+selenium_jar_url: "http://selenium-release.storage.googleapis.com/{{ selenium_version_short }}/selenium-server-standalone-{{ selenium_version }}.jar"
+java_jre_package: java-1.8.0-openjdk-headless

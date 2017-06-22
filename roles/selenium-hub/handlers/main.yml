@@ -1,0 +1,5 @@
+---
+- name: restart Selenium service
+  service:
+    name: selenium-hub
+    state: restarted

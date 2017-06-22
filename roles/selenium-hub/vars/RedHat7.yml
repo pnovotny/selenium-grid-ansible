@@ -1,0 +1,4 @@
+---
+service_dir: /usr/lib/systemd/system
+service_files:
+  - selenium-hub.service

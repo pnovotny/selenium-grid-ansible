@@ -1,0 +1,7 @@
+---
+service_dir: /usr/lib/systemd/system
+service_files:
+  - xvfb@.service
+  - openbox@.service
+  - vnc@.service
+  - selenium-node@.service

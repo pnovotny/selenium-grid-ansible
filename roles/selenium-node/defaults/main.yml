@@ -1,0 +1,11 @@
+---
+hub_host: "{{ groups['selenium-hub'][0] }}"
+nodes: 4
+browser_capabilities:
+  -
+    browser_name: firefox
+    browser_version: ""
+firefox_package: firefox
+chrome_package: chromium
+geckodriver_ver: 0.17.0
+chromedriver_ver: 2.30

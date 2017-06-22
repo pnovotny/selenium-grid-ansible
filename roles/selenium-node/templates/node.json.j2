@@ -1,0 +1,19 @@
+{
+  "capabilities": [
+    {% for capability in browser_capabilities %}
+    {
+      "browserName": "{{ capability.browser_name }}",
+      "version": "{{ capability.browser_version|string|default('') }}",
+      "platform": "{{ ansible_system|upper }}",
+      "maxInstances": 1
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ],
+  "configuration": {
+    "hubHost": "{{ hub_host }}",
+    "hubPort": {{ hub_port }},
+    "maxSession": 1,
+    "registerCycle": 10000,
+    "register": true
+  }
+}

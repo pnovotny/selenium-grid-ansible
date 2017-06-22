@@ -1,0 +1,39 @@
+---
+- name: load distribution-specific variables
+  include_vars:
+    file: "{{ ansible_distribution }}{{ ansible_distribution_major_version }}.yml"
+
+- include: "{{ item.browser_name }}.yml"
+  with_items: "{{ browser_capabilities }}"
+
+- name: install required packages (xvfb, openbox, vnc, etc.)
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ service_packages }}"
+
+- name: deploy underlying selenium node services (xvfb, openbox, vnc)
+  copy:
+    src: "{{ item }}"
+    dest: "{{ service_dir }}/{{ item }}"
+  with_items: "{{ service_files }}"
+  notify: restart Selenium service
+
+- name: deploy selenium-nodes management service
+  template:
+    src: selenium-nodes.service.j2
+    dest: "{{ service_dir }}/selenium-nodes.service"
+    mode: 0644
+  notify: restart Selenium service
+
+- name: deploy Selenium node JSON config
+  template:
+    src: node.json.j2
+    dest: "{{ config_dir }}/node.json"
+    mode: 0644
+  notify: restart Selenium service
+
+- name: enable selenium-nodes service
+  service:
+    name: selenium-nodes
+    enabled: yes

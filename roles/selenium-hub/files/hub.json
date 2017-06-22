@@ -1,0 +1,7 @@
+{
+  "timeout": 120000,
+  "browserTimeout": 60000,
+  "trustAllSSLCertificates": true,
+  "nodePolling": 5000,
+  "cleanUpCycle": 2000
+}

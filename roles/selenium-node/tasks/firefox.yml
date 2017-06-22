@@ -1,0 +1,17 @@
+---
+- name: install the latest Firefox browser
+  yum:
+    name: "{{ firefox_package }}"
+    state: latest
+
+- name: download and unpack geckodriver
+  unarchive:
+    src: "https://github.com/mozilla/geckodriver/releases/download/v{{ geckodriver_ver }}/geckodriver-v{{ geckodriver_ver }}-linux64.tar.gz"
+    dest: /usr/local/bin
+    remote_src: True
+
+- name: create 'wires' symlink for geckodriver
+  file:
+    src: /usr/local/bin/geckodriver
+    dest: /usr/local/bin/wires
+    state: link

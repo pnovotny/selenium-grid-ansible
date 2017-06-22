@@ -1,0 +1,12 @@
+[Unit]
+Description=Selenium hub
+After=syslog.target network.target
+
+[Service]
+Type=simple
+EnvironmentFile=/etc/selenium-grid/selenium.conf
+ExecStart=/usr/bin/java -jar $SELENIUM_JAR -role hub -port $HUB_PORT -hubConfig $HUB_CONFIG
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target

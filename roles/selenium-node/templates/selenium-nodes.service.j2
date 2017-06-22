@@ -1,0 +1,12 @@
+[Unit]
+Description=Selenium nodes management service
+After=syslog.target network.target
+Requires={% for srv_inst in range(nodes) %}selenium-node@{{ srv_inst }}.service {% endfor %}
+
+[Service]
+Type=oneshot
+ExecStart=/bin/true
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

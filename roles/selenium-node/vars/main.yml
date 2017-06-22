@@ -1,0 +1,9 @@
+---
+service_packages:
+  - xorg-x11-server-Xvfb
+  - openbox
+  - x11vnc
+  - liberation-mono-fonts
+  - liberation-narrow-fonts
+  - liberation-sans-fonts
+  - liberation-serif-fonts

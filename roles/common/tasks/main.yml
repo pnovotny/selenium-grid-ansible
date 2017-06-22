@@ -1,0 +1,45 @@
+---
+- name: load distribution-specific variables
+  include_vars:
+    file: "{{ ansible_distribution }}{{ ansible_distribution_major_version }}.yml"
+
+- name: disable SELinux
+  selinux:
+    state: disabled
+
+- name: disable firewall service
+  service:
+    name: "{{ firewall_service }}"
+    enabled: no
+    state: stopped
+
+- name: create directory for configuration files
+  file:
+    path: "{{ config_dir }}"
+    state: directory
+    mode: 0755
+
+- name: create directory for Selenium server standalone JAR
+  file:
+    path: "{{ selenium_dir }}"
+    state: directory
+    mode: 0755
+
+- name: "download selenium-server-standalone-{{ selenium_version }}.jar"
+  get_url:
+    url: "{{ selenium_jar_url }}"
+    dest: "{{ selenium_dir }}/{{ selenium_server_jar }}"
+    force: yes
+    mode: 0640
+  notify: restart Selenium service
+
+- name: deploy configuration file for hub & node system services
+  template:
+    src: selenium.conf.j2
+    dest: "{{ config_dir }}/selenium.conf"
+  notify: restart Selenium service
+
+- name: install headless OpenJDK Runtime Environment
+  yum:
+    name: "{{ java_jre_package }}"
+    state: present

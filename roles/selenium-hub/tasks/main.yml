@@ -1,0 +1,28 @@
+---
+- name: validate number of Selenium Hub nodes
+  fail:
+    msg: "The number of Selenium Hub hosts must be exactly one!"
+  when: ansible_play_hosts | length != 1
+
+- name: load distribution-specific variables
+  include_vars:
+    file: "{{ ansible_distribution }}{{ ansible_distribution_major_version }}.yml"
+
+- name: deploy Selenium hub JSON config
+  copy:
+    src: hub.json
+    dest: "{{ config_dir }}/hub.json"
+    mode: 0644
+  notify: restart Selenium service
+
+- name: deploy selenium-hub service
+  copy:
+    src: "{{ item }}"
+    dest: "{{ service_dir }}/{{ item }}"
+  with_items: "{{ service_files }}"
+  notify: restart Selenium service
+
+- name: enable selenium-hub service
+  service:
+    name: selenium-hub
+    enabled: yes

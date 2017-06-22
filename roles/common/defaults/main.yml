@@ -1,0 +1,5 @@
+---
+config_dir: /etc/selenium-grid
+selenium_dir: /opt/selenium-grid
+selenium_version: 2.53.1
+hub_port: 4444

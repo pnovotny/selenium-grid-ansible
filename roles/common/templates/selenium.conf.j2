@@ -1,0 +1,13 @@
+# configuration file for Selenium Grid (hub & nodes)
+
+SELENIUM_JAR={{ selenium_dir }}/{{ selenium_server_jar }}
+
+# selenium-hub
+HUB_PORT={{ hub_port }}
+HUB_CONFIG={{ config_dir }}/hub.json
+
+# selenium-node
+NODE_CONFIG={{ config_dir }}/node.json
+NODE_PORT_PREFIX=445
+VNC_PORT_PREFIX=545
+DISPLAY_OPTS=1600x900x24

@@ -1,0 +1,11 @@
+[Unit]
+Description=Openbox WM (display :%i)
+After=xvfb@%i.service
+Requires=xvfb@%i.service
+
+[Service]
+Type=simple
+Environment="DISPLAY=:%i"
+#EnvironmentFile=/etc/selenium-grid/selenium.conf
+ExecStart=/usr/bin/openbox
+Restart=on-abort

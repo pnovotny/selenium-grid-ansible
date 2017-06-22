@@ -1,0 +1,20 @@
+---
+- name: (systemd only) reload systemd service files
+  systemd:
+    name: selenium-nodes
+    daemon_reload: yes
+  listen: restart Selenium service
+  when: ansible_service_mgr == "systemd"
+
+- name: (systemd only) stop selenium-nodes service
+  service:
+    name: selenium-nodes
+    state: stopped
+  listen: restart Selenium service
+  when: ansible_service_mgr == "systemd"
+
+- name: restart selenium-nodes service
+  service:
+    name: selenium-nodes
+    state: restarted
+  listen: restart Selenium service

@@ -1,0 +1,12 @@
+[Unit]
+Description=Selenium node (display :%i)
+After=vnc@%i.service
+Requires=vnc@%i.service
+PartOf=selenium-nodes.service
+
+[Service]
+Type=simple
+EnvironmentFile=/etc/selenium-grid/selenium.conf
+Environment="DISPLAY=:%i"
+ExecStart=/usr/bin/java -jar $SELENIUM_JAR -role node -port ${NODE_PORT_PREFIX}%i -nodeConfig $NODE_CONFIG
+Restart=on-abort
