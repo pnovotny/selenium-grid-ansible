@@ -8,4 +8,4 @@ Type=simple
 Environment="DISPLAY=:%i"
 #EnvironmentFile=/etc/selenium-grid/selenium.conf
 ExecStart=/usr/bin/openbox
-Restart=on-abort
+Restart=on-failure

@@ -9,4 +9,4 @@ Type=simple
 EnvironmentFile=/etc/selenium-grid/selenium.conf
 Environment="DISPLAY=:%i"
 ExecStart=/usr/bin/java -jar $SELENIUM_JAR -role node -port ${NODE_PORT_PREFIX}%i -nodeConfig $NODE_CONFIG
-Restart=on-abort
+Restart=on-failure

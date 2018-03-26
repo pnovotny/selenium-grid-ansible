@@ -5,4 +5,4 @@ Description=Xvfb session (display :%i)
 Type=simple
 EnvironmentFile=/etc/selenium-grid/selenium.conf
 ExecStart=/usr/bin/Xvfb :%i -ac -noreset -screen 0 $DISPLAY_OPTS
-Restart=on-abort
+Restart=on-failure

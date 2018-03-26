@@ -7,4 +7,4 @@ Requires=openbox@%i.service
 Type=simple
 EnvironmentFile=/etc/selenium-grid/selenium.conf
 ExecStart=/usr/bin/x11vnc -q -display :%i -nopw -forever -shared -rfbport ${VNC_PORT_PREFIX}%i
-Restart=on-abort
+Restart=on-failure
