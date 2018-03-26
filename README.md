@@ -44,11 +44,11 @@ Playbook:
     ---
     - hosts: selenium-hub
       roles:
-        - { role: selenium-hub }
+        - { role: selenium-grid-ansible/selenium-hub }
 
     - hosts: selenium-nodes
       roles:
-        - { role: selenium-node }
+        - { role: selenium-grid-ansible/selenium-node }
 
 Variable file _group_vars/all_:
 
@@ -60,7 +60,7 @@ Variable file _group_vars/all_:
     hub_port: 4444
 
     # Node variables:
-    # (these can be set specifically for a particullar group or host)
+    # (these can be set specifically for a particular group or host)
     nodes: 8
     browser_capabilities:
       -
